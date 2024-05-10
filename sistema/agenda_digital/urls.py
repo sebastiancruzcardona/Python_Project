@@ -6,5 +6,7 @@ urlpatterns = [
    path('', views.index, name='index'),
    
    #Path for registro view
-   path('registro', views.registro, name='registro'), 
+   path('registro', views.registro, name='registro'),
+
+   path('agenda', views.agenda, name='agenda'),
 ]
