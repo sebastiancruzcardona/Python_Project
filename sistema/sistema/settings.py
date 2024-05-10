@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'sistema.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'agenda_digital',
+        'USER': 'root',
+        'PASSWORD': 'clavecita1357',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
