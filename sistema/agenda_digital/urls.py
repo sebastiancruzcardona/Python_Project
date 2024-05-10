@@ -9,4 +9,6 @@ urlpatterns = [
    path('registro', views.registro, name='registro'),
 
    path('agenda', views.agenda, name='agenda'),
+
+   path('contactos', views.contactos, name='contactos'),
 ]

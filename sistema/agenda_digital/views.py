@@ -14,3 +14,7 @@ def registro(request):
 def agenda(request):
    #Agenda view
    return render(request, 'paginas/agenda.html')
+
+def contactos(request):
+   #Contacto view
+   return render(request, 'paginas/contactos/index.html')
