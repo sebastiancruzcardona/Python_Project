@@ -18,3 +18,9 @@ def agenda(request):
 def contactos(request):
    #Contacto view
    return render(request, 'paginas/contactos/index.html')
+
+def crear_contacto(request):
+    return render(request, 'paginas/contactos/crear.html')
+
+def editar_contacto(request):
+    return render(request, 'paginas/contactos/editar.html')

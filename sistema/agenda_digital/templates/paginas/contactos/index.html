@@ -5,7 +5,18 @@
 {% block content %}    
 
 <div class="card">
-    <div class="card-header">Lista de contactos</div>
+    <div class="card-header">Lista de contactos
+        <a
+            name=""
+            id=""
+            class="btn btn-success"
+            href="{% url 'contactos_crear' %}"
+            role="button"
+            >agregar nuevo contacto</a
+        >
+        
+    </div>
+    
     <div class="card-body">
         <h4 class="card-title">Contactos</h4>
         
@@ -28,7 +39,23 @@
                    
                     <tr class="">
                         <td scope="row">Item</td>
-                        <td>Editar | Borrar</td>
+                        <td><a
+                            name=""
+                            id=""
+                            class="btn btn-info"
+                            href="{% url 'contactos_editar' %}"   
+                            role="button"
+                            >Editar</a
+                        >
+                         | <a
+                            name=""
+                            id=""
+                            class="btn btn-danger"
+                            href="#"
+                            role="button"
+                            >borrar</a
+                         >
+                         </td>
                         <td>Item</td>
                     </tr>
                 </tbody>

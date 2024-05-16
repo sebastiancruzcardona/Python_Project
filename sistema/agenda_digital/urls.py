@@ -11,4 +11,8 @@ urlpatterns = [
    path('agenda', views.agenda, name='agenda'),
 
    path('contactos', views.contactos, name='contactos'),
+
+   path('contactos', views.crear_contacto, name='crear'),
+
+   path('contactos/editar', views.editar_contacto, name='editar'),
 ]
