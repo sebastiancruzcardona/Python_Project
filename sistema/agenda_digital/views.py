@@ -10,6 +10,10 @@ def registro(request):
    #Registro view
    return render(request, 'paginas/registro.html')
 
+def editar_usuario(request):
+   #editar_usurio view
+   return render(request, 'paginas/editar_usuario.html')
+
 
 def agenda(request):
    #Agenda view

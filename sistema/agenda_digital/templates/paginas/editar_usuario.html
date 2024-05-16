@@ -1,0 +1,32 @@
+{% extends 'base_usuarios.html' %}
+
+{% block titulo %} Editar información {% endblock %}
+
+{% block encabezado %} Editar información {% endblock %}
+
+{% block contenido %}
+
+   {% include 'paginas/formulario_usuarios_registro_editar.html' %}
+   
+<div class="row text-center">
+   <div class="col-12">
+      <button type="button" class="btn btn-primary m-2">
+         Guardar
+      </button>
+   </div>
+</div>
+  
+{% endblock %}
+
+{% block footer %}
+<div class="col-6">
+   <a class="btn btn-primary m-2" href="{% url 'index' %}" role="button">
+      Regresar
+   </a>
+</div>
+<div class="col-6">   
+   <button type="button" class="btn btn-danger m-2">
+      Eliminar cuenta
+   </button>
+</div>
+{% endblock %}
