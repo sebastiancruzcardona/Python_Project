@@ -10,9 +10,9 @@
             name=""
             id=""
             class="btn btn-success"
-            href="{% url 'contactos_crear' %}"
+            href="{% url 'crear' %}"
             role="button"
-            >agregar nuevo contacto</a
+            > Nuevo contacto</a
         >
         
     </div>
@@ -28,6 +28,7 @@
             >
                 <thead>
                     <tr>
+                        <th scope="col">ID</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellidos</th>
                         <th scope="col">Direccion </th>
@@ -36,28 +37,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                   
+                   {% for contacto in contactos %}
                     <tr class="">
-                        <td scope="row">Item</td>
-                        <td><a
-                            name=""
-                            id=""
-                            class="btn btn-info"
-                            href="{% url 'contactos_editar' %}"   
-                            role="button"
-                            >Editar</a
+                        <td scope="row">{{contacto.id}}</td>
+                        <td scope="row">{{contacto.nombre}}</td>
+                        <td scope="row">{{contacto.apellidos}}</td>
+                        <td scope="row">{{contacto.direccion}}</td>
+                        <td scope="row">{{contacto.telefono}}</td>
+                        <td scope="row">{{contacto.correo}}</td>
+                        <td><a name="" id="" class="btn btn-info" href="{% url 'editar' %}"  role="button">
+                            Editar
+                            </a
                         >
                          | <a
                             name=""
                             id=""
                             class="btn btn-danger"
-                            href="#"
+                            href="{% url 'eliminar' contacto.id %}"
                             role="button"
                             >borrar</a
                          >
                          </td>
-                        <td>Item</td>
+                        
                     </tr>
+                   {% endfor %}
                 </tbody>
             </table>
         </div>
