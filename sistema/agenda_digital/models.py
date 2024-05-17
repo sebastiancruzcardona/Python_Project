@@ -1,3 +1,4 @@
+from typing import Any
 from django.db import models
 
 # Create your models here.
@@ -7,6 +8,15 @@ class usuario(models.Model):
    email = models.CharField(max_length=60, unique=True, verbose_name="Email")
    telefono = models.CharField(max_length=10, verbose_name="Teléfono")
    password = models.CharField(max_length=50, verbose_name="Contraseña")
+   
+   #Visualización de datos para el administrador
+   def __str__(self):
+      fila = f"id: {self.id} | nombre: {self.nombre} | email: {self.email} | telefono: {self.telefono} | password: {self.password}"
+      return fila
+   
+   #Borrado del registro
+   def delete(self, using=None, keep_parents=False):
+      super().delete()
 
 
 class contacto(models.Model):
