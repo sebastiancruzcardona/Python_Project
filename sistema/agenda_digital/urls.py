@@ -10,6 +10,8 @@ urlpatterns = [
    
    #Path for editar_usuario view
    path('editar_usuario', views.editar_usuario, name='editar_usuario'),
+   
+   path('editar_usuario/<int:id>', views.editar_usuario, name='editar_usuario'),
 
    path('agenda', views.agenda, name='agenda'),
 

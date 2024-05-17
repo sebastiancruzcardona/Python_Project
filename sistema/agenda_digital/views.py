@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from .models import contacto
+from django.shortcuts import render, redirect
+from .models import contacto, usuario
+from .forms import usuarioForm
 # Create your views here.
 
 def index(request):
@@ -8,12 +9,20 @@ def index(request):
 
 def registro(request):
    #Registro view
-   return render(request, 'paginas/registro.html')
+   formulario = usuarioForm(request.POST or None)
+   if formulario.is_valid() and request.POST:
+      formulario.save()
+      return redirect('index') 
+   return render(request, 'paginas/registro.html', {'formulario': formulario})
 
-def editar_usuario(request):
+def editar_usuario(request, id):
    #editar_usurio view
-   return render(request, 'paginas/editar_usuario.html')
-
+   usuario_editar = usuario.objects.get(id=id)
+   formulario = usuarioForm(request.POST or None, instance=usuario_editar) 
+   if formulario.is_valid() and request.POST:
+      formulario.save()
+      return redirect('index')   
+   return render(request, 'paginas/editar_usuario.html', {'formulario': formulario})
 
 def agenda(request):
    #Agenda view
