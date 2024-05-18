@@ -1,6 +1,7 @@
 from typing import Any
 from django.db import models
 
+
 # Create your models here.
 class usuario(models.Model):
    id = models.AutoField(primary_key=True)
@@ -25,5 +26,6 @@ class contacto(models.Model):
    nombre = models.CharField(max_length=60, verbose_name="Nombre")
    apellido = models.CharField(max_length=60, verbose_name="Apellido")
    telefono = models.CharField(max_length=10, verbose_name="Teléfono")   
+   categoria = models.CharField(max_length=60,null=True, verbose_name="Categoría")
    email = models.CharField(max_length=60, verbose_name="Email")
-   favorito = models.BooleanField(default=False)
+   favorito = models.BooleanField(default=False, verbose_name="Favorito")   

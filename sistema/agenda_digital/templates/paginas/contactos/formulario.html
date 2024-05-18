@@ -3,8 +3,19 @@
 {% csrf_token %}
 
 {% for campo in formulario %}
+{% if campo.name == 'favorito' %}
+<div class="mb-3">
+    <label for="" class="form-label">{{ campo.label }}</label>
+   <input type="checkbox"  name="{{ campo.name }}" class="form-check-input" {% if campo.value %} checked {% endif %}>
+    
+   
+    <br>
+    
+    
+</div>
 
 
+{% else %}
 <div class="mb-3">
     <label for="" class="form-label">{{ campo.label }}</label>
     <input type="{{ campo.field.widget.input_type }}"class="form-control" name="{{ campo.name }}" id="" aria-describedby="helpId" placeholder="{{ campo.label }}" value="{{ campo.value | default:'' }}"/>
@@ -13,8 +24,11 @@
     <br>
     
     
+
 </div>
+{% endif %}
 <div class="col-12 help-text">{{ campo.errors }}</div>
+
 {% endfor %}
 <input
         name=""

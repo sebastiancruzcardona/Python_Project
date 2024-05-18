@@ -31,9 +31,11 @@
                         <th scope="col">ID</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellidos</th>
-                        <th scope="col">Direccion </th>
+                        <th scope="col">email </th>
                         <th scope="col">Telefono </th>
-                        <th scope="col">Correo</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">favorito</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,10 +43,11 @@
                     <tr class="">
                         <td scope="row">{{contacto.id}}</td>
                         <td scope="row">{{contacto.nombre}}</td>
-                        <td scope="row">{{contacto.apellidos}}</td>
-                        <td scope="row">{{contacto.direccion}}</td>
+                        <td scope="row">{{contacto.apellido}}</td>
+                        <td scope="row">{{contacto.email}}</td>
                         <td scope="row">{{contacto.telefono}}</td>
-                        <td scope="row">{{contacto.correo}}</td>
+                        <td scope="row">{{contacto.categoria}}</td>
+                        <td scope="row">{{contacto.favorito}}</td>
                         <td><a name="" id="" class="btn btn-info" href="{% url 'editar' contacto.id %}"  role="button">
                             Editar
                             </a
@@ -58,45 +61,7 @@
                             >borrar</a
                          >
 
-                         <div class="btn-group" role="group" data-bs-toggle="buttons">
-                            <label
-                                class="btn btn-success active"
-                            >
-                                <input
-                                    type="checkbox"
-                                    class="me-2"
-                                    name=""
-                                    id=""
-                                    checked
-                                    autocomplete="off"
-                                />
-                                Choice
-                            </label>
-                            <label
-                                class="btn btn-success"
-                            >
-                                <input
-                                    type="checkbox"
-                                    class="me-2"
-                                    name=""
-                                    id=""
-                                    autocomplete="off"
-                                />
-                                Choice
-                            </label>
-                            <label
-                                class="btn btn-success"
-                            >
-                                <input
-                                    type="checkbox"
-                                    class="me-2"
-                                    name=""
-                                    id=""
-                                    autocomplete="off"
-                                />
-                                Choice
-                            </label>
-                         </div>
+                         
                          
                          </td>
                         

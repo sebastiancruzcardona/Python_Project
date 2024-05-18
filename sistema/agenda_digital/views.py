@@ -7,11 +7,13 @@ from .forms import ContactoForm
 
 def index(request):
    #Index view
+   
    return render(request, 'paginas/index.html')
 
 def registro(request):
    #Registro view
    formulario = usuarioForm(request.POST or None)
+
    if formulario.is_valid() and request.POST:
       formulario.save()
       return redirect('index') 
@@ -41,26 +43,26 @@ def contactos(request):
 def crear_contacto(request):
     
     formulario = ContactoForm(request.POST or None, request.FILES or None)
-    if formulario.is_valid():
+    if formulario.is_valid() and request.POST:
         #guarda el formulario en la base de datos
         formulario.save()
-        return redirect('contactos/index.html')
+        return redirect('contactos')
    
    
     return render(request, 'paginas/contactos/crear.html', {'formulario': formulario})
 
 def editar_contacto(request, id):
     #busca el contacto por id y retorna el formulario
-    contacto = contacto.objects.get(id=id)
-    formulario = ContactoForm(request.POST or None, request.FILES or None, instance=contacto)
+    contacto_editar = contacto.objects.get(id=id)
+    formulario = ContactoForm(request.POST or None, request.FILES or None, instance=contacto_editar)
     
     if formulario.is_valid() and request.POST:
         formulario.save()
-        return redirect('contactos/index.html')
+        return redirect('contactos')
     return render(request, 'paginas/contactos/editar.html' , {'formulario': formulario})
 
 def eliminar_contacto(request, id):
    #busca el contacto por id
-   contacto = contacto.objects.get(id=id)
-   contacto.delete()
-   return redirect('contactos/index.html')
+   contacto_delete = contacto.objects.get(id=id)
+   contacto_delete.delete()
+   return redirect('contactos')
