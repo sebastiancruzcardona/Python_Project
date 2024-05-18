@@ -7,9 +7,6 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
-CREATE DATABASE `agenda_digital` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `agenda_digital`;
-
 DROP TABLE IF EXISTS `agenda_digital_contacto`;
 CREATE TABLE `agenda_digital_contacto` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -19,13 +16,16 @@ CREATE TABLE `agenda_digital_contacto` (
   `email` varchar(60) NOT NULL,
   `favorito` tinyint(1) NOT NULL,
   `id_usuario_id` int NOT NULL,
+  `categoria` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `agenda_digital_conta_id_usuario_id_15f216df_fk_agenda_di` (`id_usuario_id`),
   CONSTRAINT `agenda_digital_conta_id_usuario_id_15f216df_fk_agenda_di` FOREIGN KEY (`id_usuario_id`) REFERENCES `agenda_digital_usuario` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `agenda_digital_contacto` (`id`, `nombre`, `apellido`, `telefono`, `email`, `favorito`, `id_usuario_id`) VALUES
-(1,	'contacto 1',	'contacto 1',	'555',	'contacto1@gmail.com',	0,	2);
+INSERT INTO `agenda_digital_contacto` (`id`, `nombre`, `apellido`, `telefono`, `email`, `favorito`, `id_usuario_id`, `categoria`) VALUES
+(1,	'contacto 1',	'contacto 1',	'555',	'contacto1@gmail.com',	1,	2,	'hola'),
+(2,	'prueba',	'prueb',	'prueba',	'f',	1,	2,	'familia'),
+(3,	'dasd',	'prueb',	'prueba',	'dsad',	0,	2,	'sda');
 
 DROP TABLE IF EXISTS `agenda_digital_usuario`;
 CREATE TABLE `agenda_digital_usuario` (
@@ -231,7 +231,8 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (19,	'sessions',	'0001_initial',	'2024-05-11 23:18:33.342689'),
 (20,	'agenda_digital',	'0002_alter_usuario_email_alter_usuario_nombre_and_more',	'2024-05-15 00:47:55.790909'),
 (21,	'agenda_digital',	'0003_contacto',	'2024-05-16 21:15:54.491932'),
-(22,	'agenda_digital',	'0004_alter_usuario_email',	'2024-05-16 23:45:54.535152');
+(22,	'agenda_digital',	'0004_alter_usuario_email',	'2024-05-16 23:45:54.535152'),
+(23,	'agenda_digital',	'0005_contacto_categoria_alter_contacto_favorito',	'2024-05-18 04:24:40.324450');
 
 DROP TABLE IF EXISTS `django_session`;
 CREATE TABLE `django_session` (
@@ -245,4 +246,4 @@ CREATE TABLE `django_session` (
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('u76nhxrndwg5mfvgj82xlijqvg5xb43k',	'.eJxVjEEOwiAQAP_C2RCgQLsevfcNZHehUjWQlPZk_Lsh6UGvM5N5i4DHnsPR0hbWKK5Ci8svI-RnKl3EB5Z7lVzLvq0keyJP2-RcY3rdzvZvkLHlvgVO5GGaNChM0VtP0YLDYVFAI_FAMIJxdtCa0XuMLhlka-xiURF78fkC4lQ4AA:1s5wBq:XsUGCdYbci5e1vZIveEYC3C_kqu0672Q7VItZi0U400',	'2024-05-25 23:31:42.955531');
 
--- 2024-05-17 04:07:24
+-- 2024-05-18 06:28:14
