@@ -14,6 +14,31 @@
             role="button"
             > Nuevo contacto</a
         >
+       
+        <div class="mb-3">
+        <form  id ="searchForm" action="{% url 'buscar_categoria' %}" method="get">    
+            <label for="" class="form-label">categorias</label>
+            <select
+                class="form-select form-select-lg"
+                name="categoria"
+                id="categorias"
+                onchange="this.form.submit()"
+            >
+                <option selected>seleccione una</option>
+                <option value="Todos">Todos</option>
+                {% for contacto in contactos %}
+                <option value="{{contacto.categoria}}">{{contacto.categoria}}</option>
+                {% endfor %}
+            </select>
+           
+            
+           
+        </form>
+            
+            
+        </div>
+        
+        
         
     </div>
     

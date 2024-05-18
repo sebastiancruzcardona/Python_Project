@@ -3,6 +3,7 @@ from .models import contacto, usuario
 from .forms import usuarioForm
 from django.http import HttpResponse
 from .forms import ContactoForm
+from .forms import *
 # Create your views here.
 
 def index(request):
@@ -66,3 +67,32 @@ def eliminar_contacto(request, id):
    contacto_delete = contacto.objects.get(id=id)
    contacto_delete.delete()
    return redirect('contactos')
+
+def buscar_categoria(request):
+    #Recibe la categoría de la url por get del html contacto index
+    categoria = request.GET.get('categoria')
+    print(f'La categoría es: {categoria}')  # Imprime el valor de la categoría (categoria)
+    # Ahora puedes hacer algo con el valor de la categoría, como buscar en la base de datos
+    contactos = contacto.objects.all()
+    contactos_buscar = []
+    if(categoria == 'Todos'):
+        return render(request, 'paginas/contactos/index.html',  {'contactos': contactos})
+    else:
+      for contacto1 in contactos:
+        if contacto1.categoria == categoria:
+            contactos_buscar.append(contacto1)
+    contactos = contactos_buscar
+    
+    return render(request, 'paginas/contactos/index.html',  {'contactos': contactos})
+
+
+def buscar_favoritos(request):
+    #busca los contactos favoritos
+    contactos = contacto.objects.all()
+    contactos_favorites = []
+    for contacto1 in contactos:
+        if contacto1.favorito == True:
+            contactos_favorites.append(contacto1)
+
+    contactos = contactos_favorites          
+    return render(request, 'paginas/contactos/index.html',  {'contactos': contactos})

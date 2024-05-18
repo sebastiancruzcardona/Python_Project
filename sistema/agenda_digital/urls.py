@@ -24,4 +24,10 @@ urlpatterns = [
    path('contactos/editar/<int:id>', views.editar_contacto, name='editar'),
    
    path('contactos/eliminar/<int:id>', views.eliminar_contacto, name='eliminar'),
+
+   path('buscar/', views.buscar_categoria, name='buscar_categoria'),
+
+   path('favoritos/', views.buscar_favoritos, name='favoritos'),
+
+    
 ]

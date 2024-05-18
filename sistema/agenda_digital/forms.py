@@ -18,3 +18,5 @@ class ContactoForm(forms.ModelForm):
         fields = '__all__'
         
        
+class BusquedaCategoriaForm(forms.Form):
+    nombre = forms.CharField(label='Buscar Categoría', max_length=100, required=False)
