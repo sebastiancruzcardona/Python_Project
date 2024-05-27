@@ -92,15 +92,16 @@ def buscar_categoria(request, id):
     # Ahora puedes hacer algo con el valor de la categoría, como buscar en la base de datos
     contactos = contacto.objects.filter(id_usuario = id)
     contactos_buscar = []
+    all_categorias =contactos
     if(categoria == 'Todos'):
-        return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id})
+        return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id} , all_categorias)
     else:
       for contacto1 in contactos:
         if contacto1.categoria == categoria:
             contactos_buscar.append(contacto1)
     contactos = contactos_buscar
     
-    return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id})
+    return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id}, all_categorias)
 
 
 def buscar_favoritos(request, id):
