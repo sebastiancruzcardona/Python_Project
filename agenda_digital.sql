@@ -7,6 +7,9 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
+CREATE DATABASE `agenda_digital` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `agenda_digital`;
+
 DROP TABLE IF EXISTS `agenda_digital_contacto`;
 CREATE TABLE `agenda_digital_contacto` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -23,9 +26,11 @@ CREATE TABLE `agenda_digital_contacto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `agenda_digital_contacto` (`id`, `nombre`, `apellido`, `telefono`, `email`, `favorito`, `id_usuario_id`, `categoria`) VALUES
-(1,	'contacto 1',	'contacto 1',	'555',	'contacto1@gmail.com',	1,	2,	'hola'),
-(2,	'prueba',	'prueb',	'prueba',	'f',	1,	2,	'familia'),
-(3,	'dasd',	'prueb',	'prueba',	'dsad',	0,	2,	'sda');
+(3,	'dasd',	'prueb',	'prueba',	'dsad',	0,	2,	'sda'),
+(4,	'pruebita',	'pruebita',	'6565',	'pruebita@gmail.com',	1,	2,	'pruebita'),
+(5,	'Sebas',	'Cruz',	'31111',	'sebastian@gmail.com',	1,	4,	'amigos'),
+(6,	'pruebaIdOculto',	'pruebaIdOculto',	'qwertyuiop',	'pruebaIdOculto',	1,	4,	'pruebaIdOculto'),
+(7,	'pruebaNoFavorito',	'pruebaNoFavorito',	'1234567890',	'pruebaNoFavorito@gmail.com',	0,	4,	'Enemigos');
 
 DROP TABLE IF EXISTS `agenda_digital_usuario`;
 CREATE TABLE `agenda_digital_usuario` (
@@ -39,11 +44,12 @@ CREATE TABLE `agenda_digital_usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `agenda_digital_usuario` (`id`, `nombre`, `email`, `telefono`, `password`) VALUES
-(2,	'Sebastiann',	'sebastian@gmail.com',	'3187492128',	'prueb'),
-(3,	'Test',	'test@gmail.com',	'555',	'test'),
+(2,	'Sebastian',	'sebastian@gmail.com',	'3187492128',	'prueba'),
 (4,	'test2',	'test2@gmail.com',	'5555',	'test2'),
 (5,	'otro test',	'otrotest@gmail.com',	'666',	'otro'),
-(6,	'pepito',	'pepito@gmail.com',	'777',	'pepito');
+(6,	'pepito',	'pepito@gmail.com',	'777',	'pepito'),
+(7,	'Test2605',	'test2605@gmail.com',	'2605',	'2605'),
+(9,	'nuevito',	'nuevito@gmail.com',	'9999',	'nuevito');
 
 DROP TABLE IF EXISTS `auth_group`;
 CREATE TABLE `auth_group` (
@@ -246,4 +252,4 @@ CREATE TABLE `django_session` (
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('u76nhxrndwg5mfvgj82xlijqvg5xb43k',	'.eJxVjEEOwiAQAP_C2RCgQLsevfcNZHehUjWQlPZk_Lsh6UGvM5N5i4DHnsPR0hbWKK5Ci8svI-RnKl3EB5Z7lVzLvq0keyJP2-RcY3rdzvZvkLHlvgVO5GGaNChM0VtP0YLDYVFAI_FAMIJxdtCa0XuMLhlka-xiURF78fkC4lQ4AA:1s5wBq:XsUGCdYbci5e1vZIveEYC3C_kqu0672Q7VItZi0U400',	'2024-05-25 23:31:42.955531');
 
--- 2024-05-18 06:28:14
+-- 2024-05-27 02:32:23
