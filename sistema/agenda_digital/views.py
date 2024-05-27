@@ -55,8 +55,9 @@ def contactos(request, id):
    #Contacto view
    #busca todos los contactos creados que tienen el id y retorna un arraylist
    contactos = contacto.objects.filter(id_usuario = id)  
+   all_categorias =contactos
    #retorna la vista contactoss index y el arryalist de contactos
-   return render(request, 'paginas/contactos/index.html', {'contactos': contactos, 'id': id})
+   return render(request, 'paginas/contactos/index.html', {'contactos': contactos, 'id': id, 'all_categorias': all_categorias})
 
 def crear_contacto(request, id):
     
@@ -94,14 +95,14 @@ def buscar_categoria(request, id):
     contactos_buscar = []
     all_categorias =contactos
     if(categoria == 'Todos'):
-        return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id} , all_categorias)
+        return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id, 'all_categorias': all_categorias} )
     else:
       for contacto1 in contactos:
         if contacto1.categoria == categoria:
             contactos_buscar.append(contacto1)
     contactos = contactos_buscar
     
-    return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id}, all_categorias)
+    return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id, 'all_categorias': all_categorias})
 
 
 def buscar_favoritos(request, id):
