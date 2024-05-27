@@ -12,12 +12,18 @@ urlpatterns = [
    path('editar_usuario', views.editar_usuario, name='editar_usuario'),
    
    path('editar_usuario/<int:id>', views.editar_usuario, name='editar_usuario'),
+   
+   path('editar_usuario/eliminar_usuario/<str:email>', views.eliminar_usuario, name='eliminar_usuario'),
 
    path('agenda', views.agenda, name='agenda'),
 
    path('contactos', views.contactos, name='contactos'),
+   
+   path('contactos/<int:id>', views.contactos, name='contactos'),
 
    path('contactos/crear', views.crear_contacto, name='crear'),
+   
+   path('contactos/crear/<int:id>', views.crear_contacto, name='crear'),   
 
    
 
@@ -26,8 +32,12 @@ urlpatterns = [
    path('contactos/eliminar/<int:id>', views.eliminar_contacto, name='eliminar'),
 
    path('buscar/', views.buscar_categoria, name='buscar_categoria'),
+   
+   path('buscar/<int:id>', views.buscar_categoria, name='buscar_categoria'),
 
    path('favoritos/', views.buscar_favoritos, name='favoritos'),
+   
+   path('favoritos/<int:id>', views.buscar_favoritos, name='favoritos'),
 
     
 ]

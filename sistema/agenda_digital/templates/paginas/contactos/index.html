@@ -10,13 +10,13 @@
             name=""
             id=""
             class="btn btn-success"
-            href="{% url 'crear' %}"
+            href="{% url 'crear' id %}"
             role="button"
             > Nuevo contacto</a
         >
        
         <div class="mb-3">
-        <form  id ="searchForm" action="{% url 'buscar_categoria' %}" method="get">    
+        <form  id ="searchForm" action="{% url 'buscar_categoria' id %}" method="get">    
             <label for="" class="form-label">categorias</label>
             <select
                 class="form-select form-select-lg"
@@ -98,7 +98,7 @@
         
 
     </div>
-    <div class="card-footer text-muted">Footer</div>
+    <div class="card-footer text-muted"></div>
 </div>
 
 

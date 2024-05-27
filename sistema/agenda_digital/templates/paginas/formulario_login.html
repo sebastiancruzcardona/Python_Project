@@ -7,33 +7,28 @@
          type="{{ campo.field.widget.input_type }}"
          class="form-control"
          name="{{ campo.name }}"
-         id="nombre"
+         id="{{ campo.name }}"
          placeholder="{{ campo.label }}"
          value="{{ campo.value | default:'' }}"/>         
    </div>
    
-   <div class="col-12 help-text">{{campo.errors}}</div>
+   
    {% endfor %}
 
-   
-<div class="col-12 text-center">
-   <div class="row">
-      <div class="col-6">
-         <a class="btn btn-primary" href="{% url 'index' %}" role="button">
-            Regresar
-         </a>
-      </div>   
-      <div class="col-6 text-center">
-         <input
-         name=""
-         id=""
-         class="btn btn-primary"
-         type="submit"
-         value="Guardar"/> 
+   <div class="col-12 text-center">
+      <div class="row">
+         <div class="col-6">
+            <input
+               name=""
+               id=""
+               class="btn btn-primary"
+               type="submit"
+               value="Ingresar"/>               
+         </div>
+         <div class="col-6">
+            <a class="btn btn-primary" href="{% url 'registro' %}" role="button">Crear cuenta</a>
+         </div>
       </div>
    </div>
-</div>
-
-   
      
 </form>

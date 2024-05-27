@@ -19,7 +19,7 @@
 <div class="col-12 text-center">
    <div class="row">
       <div class="col-6">
-         <a class="btn btn-primary" href="{% url 'index' %}" role="button">
+         <a class="btn btn-primary" href="{% url 'contactos' id %}" role="button">
             Regresar
          </a>
       </div>   
@@ -33,6 +33,19 @@
       </div>
    </div>
 </div>
+
+{% for campo in formulario %} 
+{% if campo.name == 'email' %}
+<div class="col-12 text-center">
+   <div class="row">
+      <div class="col-6 offset-md-3">
+         <a name="" id="" class="btn btn-danger" 
+         href="{% url 'eliminar_usuario' campo.value %}" role="button">borrar</a>              
+      </div>
+   </div>
+</div>
+{% endif %}
+{% endfor %}
 
    
      

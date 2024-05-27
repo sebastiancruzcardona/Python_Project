@@ -6,19 +6,6 @@
 
 {% block contenido %}
 
-   {% include 'paginas/formulario_usuarios_login.html' %}
+   {% include 'paginas/formulario_login.html' %}
   
-{% endblock %}
-
-{% block footer %}
-<div class="col-6">
-   <a class="btn btn-primary m-2" href="#" role="button">
-      Ingresar
-   </a>
-</div>
-<div class="col-6">
-   <a class="btn btn-primary m-2" href="{% url 'registro' %}" role="button">
-      Crear cuenta
-   </a>
-</div>
 {% endblock %}

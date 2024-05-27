@@ -5,6 +5,11 @@ class usuarioForm(forms.ModelForm):
    class Meta:
       model = usuario
       fields = ['nombre', 'email', 'telefono', 'password']
+      
+      
+class usuarioLoginForm(forms.Form):
+   email = forms.EmailField()
+   password = forms.CharField(widget=forms.PasswordInput)
 
 from .models import *
 
