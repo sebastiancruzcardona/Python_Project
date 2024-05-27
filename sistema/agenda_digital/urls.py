@@ -39,5 +39,7 @@ urlpatterns = [
    
    path('favoritos/<int:id>', views.buscar_favoritos, name='favoritos'),
 
+   path('buscar_contacto/<int:id>', views.buscar_nombre, name='buscar_contacto'),
+
     
 ]

@@ -14,6 +14,28 @@
             role="button"
             > Nuevo contacto</a
         >
+
+       <form action="{% url 'buscar_contacto' id %}" method="get">
+       
+        <input
+                type="text"
+                class="form-control"
+                name="name"
+                placeholder="Nombre"
+                required
+                
+            />
+            <input
+                name=""
+                id=""
+                class="btn btn-primary"
+                type="submit"
+                
+                value="Buscar"
+            />
+            
+       </form>
+        
        
         <div class="mb-3">
         <form  id ="searchForm" action="{% url 'buscar_categoria' id %}" method="get">    

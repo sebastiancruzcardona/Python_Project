@@ -109,9 +109,32 @@ def buscar_favoritos(request, id):
     #busca los contactos favoritos
     contactos = contacto.objects.filter(id_usuario = id) 
     contactos_favorites = []
+    all_categorias =contactos
     for contacto1 in contactos:
         if contacto1.favorito == True:
             contactos_favorites.append(contacto1)
 
     contactos = contactos_favorites          
-    return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id})
+    return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id, 'all_categorias': all_categorias})
+
+
+def buscar_nombre(request, id):
+   nombre_get = request.GET.get('name')
+   
+   contactos = contacto.objects.filter(id_usuario = id)
+   all_categorias = contactos
+   
+   contactos_filtrados = []
+   
+   for contacto1 in contactos:
+      if contacto1.nombre.find(nombre_get) != -1:
+         contactos_filtrados.append(contacto1)
+         
+   
+   contactos = contactos_filtrados
+
+
+   
+   
+   return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id, 'all_categorias': all_categorias})
+    
