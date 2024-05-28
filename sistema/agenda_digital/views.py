@@ -67,9 +67,13 @@ def contactos(request, id):
    #Contacto view
    #busca todos los contactos creados que tienen el id y retorna un arraylist
    contactos = contacto.objects.filter(id_usuario = id)  
-   all_categorias =contactos
+   all_categorias =[]
+   for categoria in contactos:
+       all_categorias.append(categoria.categoria)
+
+   categorias = set(all_categorias)
    #retorna la vista contactoss index y el arryalist de contactos
-   return render(request, 'paginas/contactos/index.html', {'contactos': contactos, 'id': id, 'all_categorias': all_categorias})
+   return render(request, 'paginas/contactos/index.html', {'contactos': contactos, 'id': id, 'all_categorias': categorias})
 
 def crear_contacto(request, id):
     
@@ -133,16 +137,22 @@ def buscar_categoria(request, id):
     # Ahora puedes hacer algo con el valor de la categoría, como buscar en la base de datos
     contactos = contacto.objects.filter(id_usuario = id)
     contactos_buscar = []
-    all_categorias =contactos
+
+    all_categorias =[]
+    for categoria1 in contactos:
+        all_categorias.append(categoria1.categoria)
+
+    categorias = set(all_categorias)    
+    
     if(categoria == 'Todos'):
-        return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id, 'all_categorias': all_categorias} )
+        return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id, 'all_categorias': categorias} )
     else:
       for contacto1 in contactos:
         if contacto1.categoria == categoria:
             contactos_buscar.append(contacto1)
     contactos = contactos_buscar
     
-    return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id, 'all_categorias': all_categorias})
+    return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id, 'all_categorias': categorias})
 
 
 def buscar_favoritos(request, id):
@@ -162,12 +172,16 @@ def buscar_nombre(request, id):
    nombre_get = request.GET.get('name')
    
    contactos = contacto.objects.filter(id_usuario = id)
-   all_categorias = contactos
+   all_categorias = [] 
+   for categoria in contactos:
+       all_categorias.append(categoria.categoria)
+
+   categorias = set(all_categorias)
    
    contactos_filtrados = []
    
    for contacto1 in contactos:
-      if contacto1.nombre.find(nombre_get) != -1:
+      if contacto1.nombre.lower().find(nombre_get) != -1:
          contactos_filtrados.append(contacto1)
          
    
@@ -176,7 +190,7 @@ def buscar_nombre(request, id):
 
    
    
-   return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id, 'all_categorias': all_categorias})
+   return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id, 'all_categorias': categorias})
 
 #Validaciones de campos
 
