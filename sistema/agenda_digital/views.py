@@ -4,6 +4,7 @@ from .forms import usuarioForm, usuarioLoginForm
 from django.http import HttpResponse
 from .forms import ContactoForm
 from .forms import *
+from .exceptions import *
 # Create your views here.
 
 def index(request):
@@ -29,8 +30,19 @@ def registro(request):
    formulario = usuarioForm(request.POST or None)
 
    if formulario.is_valid() and request.POST:
-      formulario.save()
-      return redirect('index') 
+       nombre = formulario.cleaned_data.get('nombre')
+       correo = formulario.cleaned_data.get('email')
+       telefono = formulario.cleaned_data.get('telefono')
+       try:
+           validar_campos(nombre = nombre, email = correo, telefono = telefono)       
+       except Nombre_No_Debe_Contener_numeros as e:
+           return HttpResponse(f'Error en el registro. {e}')
+       except Email_No_Valido as e:
+           return HttpResponse(f'Error en el registro. {e}')
+       except Telefono_No_Valido as e:
+           return HttpResponse(f'Error en el registro. {e}')             
+       formulario.save()
+       return redirect('index') 
    return render(request, 'paginas/registro.html', {'formulario': formulario})
 
 def editar_usuario(request, id):
@@ -63,10 +75,24 @@ def crear_contacto(request, id):
     
     formulario = ContactoForm(request.POST or None, request.FILES or None)
     if formulario.is_valid() and request.POST:
-        #guarda el formulario en la base de datos
-        formulario.save()
-        return redirect('contactos', id)
-   
+       
+       nombre = formulario.cleaned_data.get('nombre')
+       apellido = formulario.cleaned_data.get('apellido')
+       correo = formulario.cleaned_data.get('email')
+       telefono = formulario.cleaned_data.get('telefono')
+       try:
+           validar_campos(nombre = nombre, email = correo, telefono = telefono, apellido = apellido)       
+       except Nombre_No_Debe_Contener_numeros as e:
+           return HttpResponse(f'Error en el registro. {e}')
+       except Apellido_No_Debe_Contener_numeros as e:
+           return HttpResponse(f'Error en el registro. {e}')
+       except Email_No_Valido as e:
+           return HttpResponse(f'Error en el registro. {e}')
+       except Telefono_No_Valido as e:
+           return HttpResponse(f'Error en el registro. {e}')      
+        
+       formulario.save()
+       return redirect('contactos', id)   
    
     return render(request, 'paginas/contactos/crear.html', {'formulario': formulario, 'id': id})
 
@@ -76,6 +102,20 @@ def editar_contacto(request, id, id2):
     formulario = ContactoForm(request.POST or None, request.FILES or None, instance=contacto_editar)
     
     if formulario.is_valid() and request.POST:
+        nombre = formulario.cleaned_data.get('nombre')
+        apellido = formulario.cleaned_data.get('apellido')
+        correo = formulario.cleaned_data.get('email')
+        telefono = formulario.cleaned_data.get('telefono')
+        try:
+            validar_campos(nombre = nombre, email = correo, telefono = telefono, apellido = apellido)       
+        except Nombre_No_Debe_Contener_numeros as e:
+           return HttpResponse(f'Error en el la edición. {e}')
+        except Apellido_No_Debe_Contener_numeros as e:
+           return HttpResponse(f'Error en el la edición. {e}')
+        except Email_No_Valido as e:
+           return HttpResponse(f'Error en el la edición. {e}')
+        except Telefono_No_Valido as e:
+           return HttpResponse(f'Error en el la edición. {e}')
         formulario.save()
         return redirect('contactos', id)
     return render(request, 'paginas/contactos/editar.html' , {'formulario': formulario, 'id': id})
@@ -137,4 +177,43 @@ def buscar_nombre(request, id):
    
    
    return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id, 'all_categorias': all_categorias})
+
+#Validaciones de campos
+
+#Para poder manejar expresiones regulares
+import re
+
+#Validación nombre
+def validar_nombre(texto):
+    #any evalúa un iterable
+    if not re.match(r'^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$', texto):
+        raise Nombre_No_Debe_Contener_numeros()
+
+#Validación apellido    
+def validar_apellido(texto):
+    if not re.match(r'^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$', texto):
+        raise Apellido_No_Debe_Contener_numeros()
+
+#Validación email
+def validar_email(email: str) -> None:
+    if not re.match(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", email):
+        raise Email_No_Valido()
+
+#Validación de telefono    
+def validar_telefono(telefono):
+    if len(telefono) != 10 or not telefono.isdigit():
+        raise Telefono_No_Valido()
+    
+#Validación general para llamar en las views
+def validar_campos(**campos):
+    for campo, valor in campos.items():
+        if campo == 'nombre':
+            validar_nombre(valor)
+        elif campo == 'email':
+            validar_email(valor)
+        elif campo == 'telefono':
+            validar_telefono(valor) 
+        elif campo == 'apellido':
+            validar_apellido(valor)
+            
     
