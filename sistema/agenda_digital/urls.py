@@ -29,7 +29,7 @@ urlpatterns = [
 
    path('contactos/editar/<int:id>/<int:id2>', views.editar_contacto, name='editar'),
    
-   path('contactos/eliminar/<int:id>', views.eliminar_contacto, name='eliminar'),
+   path('contactos/eliminar/<int:id>/<int:id2>', views.eliminar_contacto, name='eliminar'),
 
    path('buscar/', views.buscar_categoria, name='buscar_categoria'),
    

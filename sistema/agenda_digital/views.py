@@ -80,11 +80,11 @@ def editar_contacto(request, id, id2):
         return redirect('contactos', id)
     return render(request, 'paginas/contactos/editar.html' , {'formulario': formulario, 'id': id})
 
-def eliminar_contacto(request, id):
+def eliminar_contacto(request, id, id2):
    #busca el contacto por id
-   contacto_delete = contacto.objects.get(id=id)
+   contacto_delete = contacto.objects.get(id=id2)
    contacto_delete.delete()
-   return redirect('contactos')
+   return redirect('contactos', id)
 
 def buscar_categoria(request, id):
     #Recibe la categoría de la url por get del html contacto index
