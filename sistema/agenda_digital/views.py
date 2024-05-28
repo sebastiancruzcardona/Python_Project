@@ -70,15 +70,15 @@ def crear_contacto(request, id):
    
     return render(request, 'paginas/contactos/crear.html', {'formulario': formulario, 'id': id})
 
-def editar_contacto(request, id):
+def editar_contacto(request, id, id2):
     #busca el contacto por id y retorna el formulario
-    contacto_editar = contacto.objects.get(id=id)
+    contacto_editar = contacto.objects.get(id=id2)
     formulario = ContactoForm(request.POST or None, request.FILES or None, instance=contacto_editar)
     
     if formulario.is_valid() and request.POST:
         formulario.save()
-        return redirect('contactos')
-    return render(request, 'paginas/contactos/editar.html' , {'formulario': formulario})
+        return redirect('contactos', id)
+    return render(request, 'paginas/contactos/editar.html' , {'formulario': formulario, 'id': id})
 
 def eliminar_contacto(request, id):
    #busca el contacto por id
