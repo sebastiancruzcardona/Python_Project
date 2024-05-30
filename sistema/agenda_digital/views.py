@@ -34,7 +34,7 @@ def registro(request):
        correo = formulario.cleaned_data.get('email')
        telefono = formulario.cleaned_data.get('telefono')
        try:
-           validar_campos(nombre = nombre, email = correo, telefono = telefono)       
+           validar_campos2(nombre = nombre, email = correo, telefono = telefono)       
        except Nombre_No_Debe_Contener_numeros as e:
            return HttpResponse(f'Error en el registro. {e}')
        except Email_No_Valido as e:
@@ -85,7 +85,7 @@ def crear_contacto(request, id):
        correo = formulario.cleaned_data.get('email')
        telefono = formulario.cleaned_data.get('telefono')
        try:
-           validar_campos(nombre = nombre, email = correo, telefono = telefono, apellido = apellido)       
+           validar_campos2(nombre = nombre, email = correo, telefono = telefono, apellido = apellido)       
        except Nombre_No_Debe_Contener_numeros as e:
            return HttpResponse(f'Error en el registro. {e}')
        except Apellido_No_Debe_Contener_numeros as e:
@@ -218,7 +218,7 @@ def validar_telefono(telefono):
     if len(telefono) != 10 or not telefono.isdigit():
         raise Telefono_No_Valido()
     
-#Validación general para llamar en las views
+#Validación general para llamar en las views empleando if y elif
 def validar_campos(**campos):
     for campo, valor in campos.items():
         if campo == 'nombre':
@@ -229,5 +229,18 @@ def validar_campos(**campos):
             validar_telefono(valor) 
         elif campo == 'apellido':
             validar_apellido(valor)
+            
+#Validación general para llamar en las views empleando match case          
+def validar_campos2(**campos):
+    for campo, valor in campos.items():
+        match campo:
+            case 'nombre':
+                validar_nombre(valor)
+            case 'email':
+                validar_email(valor)
+            case 'telefono':
+                validar_telefono(valor) 
+            case 'apellido':
+                validar_apellido(valor)
             
     
