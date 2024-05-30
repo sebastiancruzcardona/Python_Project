@@ -13,12 +13,14 @@ def index(request):
    if formulario.is_valid() and request.POST:
        email = formulario.cleaned_data.get('email')
        password = formulario.cleaned_data.get('password')
-       usuarios = usuario.objects.all()
+       usuarios_tupla = tuple(usuario.objects.all())
        id = 0
-       for usuario_recorrer in usuarios:
-           if email == usuario_recorrer.email and password == usuario_recorrer.password:
-               id = usuario_recorrer.id
-               
+       i = 0
+       while i < len(usuarios_tupla):
+           if email == usuarios_tupla[i].email and password == usuarios_tupla[i].password:
+               id = usuarios_tupla[i].id
+               break
+           i += 1
        if id == 0:
            return HttpResponse('Usuario o contraseña no válidos.')
        return redirect('contactos', id) 
@@ -169,7 +171,7 @@ def buscar_favoritos(request, id):
 
 
 def buscar_nombre(request, id):
-   nombre_get = request.GET.get('name')
+   nombre_get = request.GET.get('name').lower()
    
    contactos = contacto.objects.filter(id_usuario = id)
    all_categorias = [] 
@@ -184,11 +186,7 @@ def buscar_nombre(request, id):
       if contacto1.nombre.lower().find(nombre_get) != -1:
          contactos_filtrados.append(contacto1)
          
-   
    contactos = contactos_filtrados
-
-
-   
    
    return render(request, 'paginas/contactos/index.html',  {'contactos': contactos, 'id': id, 'all_categorias': categorias})
 
